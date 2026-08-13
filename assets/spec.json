@@ -1,0 +1,573 @@
+{
+  "meta": {
+    "name": "HH Goa 2026 — Builder ID (landscape, direction 3a)",
+    "artboard": {
+      "width": 1620,
+      "height": 1020,
+      "aspect": "1.59:1 (CR80 credential)"
+    },
+    "staticLayer": {
+      "file": "HHGoa-BuilderID-5a-static-3240x2040.png",
+      "width": 3240,
+      "height": 2040,
+      "scale": 2,
+      "contains": "green identity panel, pink + yellow organic forms, empty photo frame, Kunbi check band, beach tile artwork, ticker band, data rules, footer bar, hashtag dot, frond band, and all FIXED text (2:47 PM STUDIO / GOA, INDIA / HACKER HOUSE GOA / 28 – 31 OCT 2026 / गोवा / ticker)",
+      "excludes": "profile photo and every variable text listed below"
+    },
+    "fonts": {
+      "display": {
+        "family": "Bricolage Grotesque",
+        "weights": [
+          600,
+          800
+        ]
+      },
+      "mono": {
+        "family": "JetBrains Mono",
+        "weights": [
+          500,
+          700
+        ]
+      }
+    },
+    "coordinates": "origin = top-left of the 1620×1020 artboard, in artboard px. Multiply by 2 for the 3240×2040 PNG. x/y = top-left of the text box; baseline ≈ y + fontSize × 0.8."
+  },
+  "palette": {
+    "palmGreen": "#0E7A4E",
+    "noonYellow": "#FFD62B",
+    "sunsetPink": "#FF4E8A",
+    "coconut": "#FFF4DC",
+    "monsoonInk": "#12100E"
+  },
+  "photo": {
+    "id": "profilePhoto",
+    "x": 44,
+    "y": 228,
+    "width": 432,
+    "height": 432,
+    "borderRadius": 22,
+    "frame": {
+      "stroke": "#0E7A4E",
+      "weight": 12,
+      "note": "frame is baked into the PNG; draw the photo inside the 432×432 box, cover-cropped square"
+    }
+  },
+  "variableText": [
+    {
+      "id": "stack",
+      "x": 576,
+      "y": 204,
+      "width": 718,
+      "height": 26,
+      "align": "left",
+      "text": "RUST · ZK · INFERENCE",
+      "font": "JetBrains Mono",
+      "fontSize": 20,
+      "fontWeight": 700,
+      "color": "#12100E",
+      "letterSpacing": 5.2,
+      "textTransform": "uppercase",
+      "rule": "max 3 items separated by \" · \", one line, never wraps"
+    },
+    {
+      "id": "builderName",
+      "x": 576,
+      "y": 250,
+      "width": 718,
+      "height": 135,
+      "align": "left",
+      "text": "Anaya",
+      "font": "Bricolage Grotesque",
+      "fontSize": 150,
+      "fontWeight": 800,
+      "color": "#0E7A4E",
+      "letterSpacing": -7.5,
+      "lineHeight": 0.9,
+      "textTransform": "uppercase",
+      "rule": "size steps by length — ≤8 chars: 150 · 9–18: 96 · 19–30: 72 (break at space) · >30: 72 with initial + surname. Box is fixed; text grows downward from y=250."
+    },
+    {
+      "id": "builderTitle",
+      "x": 596,
+      "y": 474,
+      "width": 308,
+      "height": 39,
+      "align": "left",
+      "text": "The Latency Monk",
+      "font": "Bricolage Grotesque",
+      "fontSize": 32,
+      "fontWeight": 700,
+      "color": "#FFF4DC",
+      "letterSpacing": -0.32,
+      "textTransform": "uppercase",
+      "block": {
+        "x": 576,
+        "y": 464,
+        "width": 348,
+        "height": 60,
+        "fill": "#FF4E8A",
+        "note": "pink block auto-widens to text + 20px padding each side; block is NOT in the PNG when the title is long — redraw if width ≠ 348"
+      },
+      "rule": "generated title; wraps to a second line rather than scaling"
+    },
+    {
+      "id": "builderNumber",
+      "x": 44,
+      "y": 824,
+      "width": 194,
+      "height": 29,
+      "align": "left",
+      "text": "BUILDER 138",
+      "font": "JetBrains Mono",
+      "fontSize": 22,
+      "fontWeight": 700,
+      "color": "#FFD62B",
+      "letterSpacing": 4.4,
+      "suffix": {
+        "text": "/ 247",
+        "x": 388,
+        "y": 824,
+        "color": "rgba(255,244,220,0.7)",
+        "fontSize": 22,
+        "fontWeight": 700,
+        "letterSpacing": 4.4
+      }
+    },
+    {
+      "id": "teamLabel",
+      "x": 576,
+      "y": 746,
+      "width": 110,
+      "height": 18,
+      "text": "TEAM",
+      "font": "JetBrains Mono",
+      "fontSize": 14,
+      "fontWeight": 700,
+      "color": "#12100E",
+      "letterSpacing": 2.8,
+      "textTransform": "uppercase"
+    },
+    {
+      "id": "teamValue",
+      "x": 576,
+      "y": 772,
+      "width": 110,
+      "height": 33,
+      "text": "Ghumot",
+      "font": "Bricolage Grotesque",
+      "fontSize": 30,
+      "fontWeight": 600,
+      "color": "#0E7A4E",
+      "letterSpacing": -0.6
+    },
+    {
+      "id": "trackLabel",
+      "x": 730,
+      "y": 746,
+      "width": 148,
+      "height": 18,
+      "text": "TRACK",
+      "font": "JetBrains Mono",
+      "fontSize": 14,
+      "fontWeight": 700,
+      "color": "#12100E",
+      "letterSpacing": 2.8,
+      "textTransform": "uppercase"
+    },
+    {
+      "id": "trackValue",
+      "x": 730,
+      "y": 772,
+      "width": 148,
+      "height": 33,
+      "text": "AI × Crypto",
+      "font": "Bricolage Grotesque",
+      "fontSize": 30,
+      "fontWeight": 600,
+      "color": "#0E7A4E",
+      "letterSpacing": -0.6
+    },
+    {
+      "id": "checkInLabel",
+      "x": 923,
+      "y": 746,
+      "width": 167,
+      "height": 18,
+      "text": "CHECK-IN",
+      "font": "JetBrains Mono",
+      "fontSize": 14,
+      "fontWeight": 700,
+      "color": "#12100E",
+      "letterSpacing": 2.8,
+      "textTransform": "uppercase"
+    },
+    {
+      "id": "checkInValue",
+      "x": 923,
+      "y": 772,
+      "width": 167,
+      "height": 33,
+      "text": "27 Oct · 14:47",
+      "font": "Bricolage Grotesque",
+      "fontSize": 30,
+      "fontWeight": 600,
+      "color": "#0E7A4E",
+      "letterSpacing": -0.6
+    },
+    {
+      "id": "tileBarLabel",
+      "x": 1334,
+      "y": 497,
+      "width": 230,
+      "height": 20,
+      "align": "center",
+      "text": "SUSEGAD MODE",
+      "font": "JetBrains Mono",
+      "fontSize": 15,
+      "fontWeight": 700,
+      "color": "#FFF4DC",
+      "letterSpacing": 3,
+      "textTransform": "uppercase",
+      "rule": "centred in the pink bar at x1334 y489 230×36; ≤16 characters"
+    },
+    {
+      "id": "footerLeft",
+      "x": 597,
+      "y": 901,
+      "width": 319,
+      "height": 25,
+      "align": "left",
+      "text": "SUSEGAD · SHIP ANYWAY",
+      "font": "JetBrains Mono",
+      "fontSize": 19,
+      "fontWeight": 700,
+      "color": "#12100E",
+      "letterSpacing": 3.8,
+      "textTransform": "uppercase",
+      "rule": "≤26 characters"
+    },
+    {
+      "id": "hashtag",
+      "x": 1353,
+      "y": 901,
+      "width": 190,
+      "height": 25,
+      "align": "right",
+      "text": "#FramedInGoa",
+      "font": "JetBrains Mono",
+      "fontSize": 19,
+      "fontWeight": 700,
+      "color": "#12100E",
+      "letterSpacing": 2.66,
+      "rule": "right-aligned to x=1543; the 12px pink dot at cx1359 cy914 is baked into the PNG — keep the hashtag ≤16 characters so it clears the dot"
+    }
+  ],
+  "fixedText": [
+    {
+      "id": "studioLockup",
+      "x": 44,
+      "y": 48,
+      "text": "2:47 PM STUDIO\\nGOA, INDIA",
+      "font": "JetBrains Mono",
+      "fontSize": 19,
+      "fontWeight": 700,
+      "color": "#FFF4DC",
+      "letterSpacing": 4.18,
+      "lineHeight": 1.7
+    },
+    {
+      "id": "eventLeft",
+      "x": 576,
+      "y": 52,
+      "text": "HACKER HOUSE GOA",
+      "font": "JetBrains Mono",
+      "fontSize": 19,
+      "fontWeight": 700,
+      "color": "#0E7A4E",
+      "letterSpacing": 4.18
+    },
+    {
+      "id": "eventRight",
+      "x": 1315,
+      "y": 52,
+      "width": 249,
+      "align": "right",
+      "text": "28 – 31 OCT 2026",
+      "font": "JetBrains Mono",
+      "fontSize": 19,
+      "fontWeight": 700,
+      "color": "#0E7A4E",
+      "letterSpacing": 4.18
+    },
+    {
+      "id": "devanagari",
+      "x": 44,
+      "y": 871,
+      "text": "गोवा",
+      "font": "Bricolage Grotesque",
+      "fontSize": 62,
+      "fontWeight": 600,
+      "color": "#FFF4DC"
+    },
+    {
+      "id": "ticker",
+      "x": 576,
+      "y": 616,
+      "text": "4 DAYS · ONE RHYTHM · EVERYTHING INTENTIONAL · ",
+      "font": "JetBrains Mono",
+      "fontSize": 18,
+      "fontWeight": 700,
+      "color": "#FFD62B",
+      "letterSpacing": 3.96,
+      "clip": "repeats and clips at both edges of the 1620px band"
+    }
+  ],
+  "staticShapes": [
+    {
+      "id": "ground",
+      "x": 0,
+      "y": 0,
+      "width": 1620,
+      "height": 1020,
+      "fill": "#FFD62B"
+    },
+    {
+      "id": "identityPanel",
+      "x": 0,
+      "y": 0,
+      "width": 520,
+      "height": 1020,
+      "fill": "#0E7A4E"
+    },
+    {
+      "id": "pinkForm",
+      "x": 20,
+      "y": 206,
+      "width": 478,
+      "height": 478,
+      "fill": "#FF4E8A",
+      "borderRadius": "60% 40% 55% 45% / 52% 48% 58% 42%"
+    },
+    {
+      "id": "yellowForm",
+      "x": 104,
+      "y": 140,
+      "width": 320,
+      "height": 320,
+      "fill": "#FFD62B",
+      "borderRadius": "44% 56% 38% 62% / 58% 42% 60% 40%"
+    },
+    {
+      "id": "photoFrame",
+      "x": 44,
+      "y": 228,
+      "width": 432,
+      "height": 432,
+      "fill": "#FFF4DC",
+      "borderRadius": 22,
+      "stroke": {
+        "color": "#0E7A4E",
+        "weight": 12
+      }
+    },
+    {
+      "id": "kunbiBand",
+      "x": 44,
+      "y": 776,
+      "width": 432,
+      "height": 28,
+      "fill": "#FF4E8A",
+      "pattern": {
+        "color": "rgba(18,16,14,0.6)",
+        "weight": 3,
+        "spacing": 22,
+        "axes": [
+          "x",
+          "y"
+        ]
+      }
+    },
+    {
+      "id": "beachTile",
+      "x": 1334,
+      "y": 157,
+      "width": 230,
+      "height": 368,
+      "fill": "#0E7A4E",
+      "borderRadius": 20,
+      "children": [
+        {
+          "id": "sun",
+          "x": 1484,
+          "y": 231,
+          "width": 46,
+          "height": 46,
+          "fill": "#FFD62B",
+          "shape": "circle"
+        },
+        {
+          "id": "horizon",
+          "x": 1334,
+          "y": 297,
+          "width": 230,
+          "height": 2,
+          "fill": "rgba(255,244,220,0.85)"
+        },
+        {
+          "id": "wave1",
+          "x": 1352,
+          "y": 323,
+          "width": 44,
+          "height": 2,
+          "fill": "rgba(255,244,220,0.7)"
+        },
+        {
+          "id": "wave2",
+          "x": 1510,
+          "y": 343,
+          "width": 38,
+          "height": 2,
+          "fill": "rgba(255,244,220,0.7)"
+        },
+        {
+          "id": "sand",
+          "x": 1334,
+          "y": 419,
+          "width": 230,
+          "height": 70,
+          "fill": "#FFF4DC"
+        },
+        {
+          "id": "umbrellaPole",
+          "x": 1447,
+          "y": 395,
+          "width": 5,
+          "height": 76,
+          "fill": "#12100E"
+        },
+        {
+          "id": "umbrellaDome",
+          "x": 1369,
+          "y": 317,
+          "width": 160,
+          "height": 80,
+          "shape": "half-disc",
+          "wedge": 22.5,
+          "fills": [
+            "#FF4E8A",
+            "#FFF4DC"
+          ]
+        },
+        {
+          "id": "lounger",
+          "x": 1358,
+          "y": 441,
+          "width": 59,
+          "height": 16,
+          "rotation": -7,
+          "fill": "#0E7A4E",
+          "borderRadius": 5
+        },
+        {
+          "id": "drink",
+          "x": 1486,
+          "y": 443,
+          "width": 20,
+          "height": 22,
+          "fill": "#FFD62B",
+          "borderRadius": "0 0 9 9"
+        },
+        {
+          "id": "straw",
+          "x": 1499,
+          "y": 427,
+          "width": 3,
+          "height": 22,
+          "rotation": 16,
+          "fill": "#FF4E8A"
+        },
+        {
+          "id": "tileBar",
+          "x": 1334,
+          "y": 489,
+          "width": 230,
+          "height": 36,
+          "fill": "#FF4E8A"
+        }
+      ]
+    },
+    {
+      "id": "titleBlock",
+      "x": 576,
+      "y": 464,
+      "width": 348,
+      "height": 60,
+      "fill": "#FF4E8A",
+      "note": "width tracks builderTitle"
+    },
+    {
+      "id": "tickerBand",
+      "x": 520,
+      "y": 604,
+      "width": 1100,
+      "height": 48,
+      "fill": "#0E7A4E"
+    },
+    {
+      "id": "dataRules",
+      "y": 730,
+      "height": 3,
+      "fill": "#0E7A4E",
+      "columns": [
+        {
+          "x": 576,
+          "width": 110
+        },
+        {
+          "x": 730,
+          "width": 148
+        },
+        {
+          "x": 923,
+          "width": 167
+        }
+      ]
+    },
+    {
+      "id": "footerBar",
+      "x": 576,
+      "y": 885,
+      "width": 988,
+      "height": 57,
+      "fill": "#FFF4DC",
+      "stroke": {
+        "color": "#0E7A4E",
+        "weight": 3
+      }
+    },
+    {
+      "id": "hashtagDot",
+      "cx": 1359,
+      "cy": 914,
+      "r": 6,
+      "fill": "#FF4E8A"
+    },
+    {
+      "id": "frondBand",
+      "x": 0,
+      "y": 962,
+      "width": 1620,
+      "height": 58,
+      "fill": "#FFD62B",
+      "pattern": {
+        "color": "#0E7A4E",
+        "weight": 12,
+        "spacing": 36,
+        "angles": [
+          72,
+          108
+        ]
+      }
+    }
+  ]
+}

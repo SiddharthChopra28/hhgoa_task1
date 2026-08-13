@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Builder ID — Hacker House Goa 2026</title>
+<meta name="description" content="Make your Hacker House Goa 2026 builder ID card. #FrameInGoa">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--green:#0E7A4E;--yellow:#FFD62B;--pink:#FF4E8A;--coconut:#FFF4DC;--ink:#12100E}
+*{box-sizing:border-box}
+body{margin:0;background:var(--yellow);color:var(--ink);
+  font:500 16px/1.5 "JetBrains Mono",ui-monospace,monospace}
+.wrap{max-width:760px;margin:0 auto;padding:24px 20px 64px}
+header{border-bottom:3px solid var(--green);padding-bottom:14px;margin-bottom:26px}
+.kicker{color:var(--green);letter-spacing:.26em;font-size:13px;font-weight:700}
+h1{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;letter-spacing:-.04em;
+  color:var(--green);font-size:clamp(38px,11vw,72px);line-height:.92;margin:10px 0 0}
+.sub{margin:10px 0 0;font-size:13px;letter-spacing:.1em}
+label{display:block;font-size:12px;font-weight:700;letter-spacing:.2em;margin:20px 0 7px}
+input[type=text]{width:100%;padding:13px 14px;border:3px solid var(--green);border-radius:0;
+  background:var(--coconut);font:500 16px "JetBrains Mono",monospace;color:var(--ink)}
+input[type=text]:focus{outline:3px solid var(--pink);outline-offset:1px}
+.hint{font-size:11px;opacity:.65;margin-top:6px;letter-spacing:.04em}
+.drop{border:3px dashed var(--green);background:var(--coconut);padding:26px 16px;text-align:center;
+  cursor:pointer;display:block}
+.drop:focus-within{outline:3px solid var(--pink)}
+.drop input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.drop img{max-height:150px;border-radius:8px;margin-bottom:10px;display:block;margin-inline:auto}
+button,.btn{display:inline-block;border:3px solid var(--ink);border-radius:0;padding:14px 20px;
+  font:700 14px "JetBrains Mono",monospace;letter-spacing:.14em;cursor:pointer;text-decoration:none;
+  color:var(--ink);background:var(--coconut)}
+button:disabled{opacity:.5;cursor:progress}
+#go{width:100%;margin-top:26px;background:var(--pink);color:var(--coconut);border-color:var(--ink)}
+#card{width:100%;margin-top:8px;border:3px solid var(--green);display:block}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.actions .btn,.actions button{flex:1 1 160px;text-align:center}
+#x{background:var(--ink);color:var(--coconut)}
+#result{display:none;margin-top:32px;border-top:3px solid var(--green);padding-top:22px}
+#err{display:none;background:var(--pink);color:var(--coconut);padding:12px 14px;margin-top:18px;
+  font-size:13px}
+.title-out{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:22px;
+  color:var(--green);letter-spacing:-.02em;margin:0 0 10px}
+footer{margin-top:40px;font-size:11px;letter-spacing:.18em;opacity:.6;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">HACKER HOUSE GOA · 28–31 OCT 2026</div>
+    <h1>Builder ID</h1>
+    <p class="sub">UPLOAD A PHOTO. GET YOUR BADGE. POST IT. #FRAMEINGOA</p>
+  </header>
+
+  <form id="f">
+    <label for="photo">YOUR PHOTO</label>
+    <label class="drop" id="drop">
+      <img id="preview" alt="" hidden>
+      <span id="droptext">Tap to choose a photo — JPG, PNG or HEIC</span>
+      <input id="photo" name="photo" type="file" accept="image/*,.heic,.heif" required>
+    </label>
+
+    <label for="name">NAME</label>
+    <input id="name" name="name" type="text" maxlength="48" placeholder="Anaya Sharma" required>
+
+    <label for="stack">STACK / ROLE</label>
+    <input id="stack" name="stack" type="text" maxlength="64" placeholder="Rust, ZK, Inference" required>
+    <div class="hint">Up to 3, comma separated.</div>
+
+    <label for="team">TEAM <span style="opacity:.5">(OPTIONAL)</span></label>
+    <input id="team" name="team" type="text" maxlength="22" placeholder="Solo">
+
+    <button id="go" type="submit">GENERATE MY ID →</button>
+  </form>
+
+  <div id="err"></div>
+
+  <section id="result">
+    <p class="title-out" id="titleOut"></p>
+    <img id="card" alt="Your Hacker House Goa 2026 builder ID card">
+    <div class="actions">
+      <a class="btn" id="dl" download="hhgoa-builder-id.png">DOWNLOAD</a>
+      <button type="button" id="rr">REROLL TITLE</button>
+      <a class="btn" id="x" target="_blank" rel="noopener">SHARE ON X</a>
+    </div>
+    <div class="hint">Download the image and attach it to your post — it looks best in the timeline.</div>
+  </section>
+
+  <footer>SUSEGAD · SHIP ANYWAY</footer>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+let current = null;
+
+$('photo').onchange = e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  $('preview').src = URL.createObjectURL(file);
+  $('preview').hidden = false;
+  $('droptext').textContent = file.name;
+};
+
+function show(data) {
+  current = data;
+  $('titleOut').textContent = '“' + data.title + '”';
+  $('card').src = data.image + '?v=' + data.id;
+  $('dl').href = data.image;
+  $('x').href = data.tweet;
+  $('result').style.display = 'block';
+  $('result').scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+
+function fail(msg) { $('err').textContent = msg; $('err').style.display = 'block'; }
+
+async function post(url, body, button, label) {
+  $('err').style.display = 'none';
+  const original = button.textContent;
+  button.disabled = true;
+  button.textContent = label;
+  try {
+    const res = await fetch(url, {method: 'POST', body});
+    const data = await res.json();
+    // FastAPI sends a string detail for our own 400s, an array for schema failures
+    if (!res.ok) throw new Error(typeof data.detail === 'string' ? data.detail : 'Check the form and try again');
+    show(data);
+  } catch (err) {
+    fail(err.message);
+  } finally {
+    button.disabled = false;
+    button.textContent = original;
+  }
+}
+
+$('f').onsubmit = e => {
+  e.preventDefault();
+  post('/api/generate', new FormData(e.target), $('go'), 'RENDERING…');
+};
+
+$('rr').onclick = () => {
+  if (current) post('/api/reroll/' + current.id, null, $('rr'), 'REROLLING…');
+};
+</script>
+</body>
+</html>
