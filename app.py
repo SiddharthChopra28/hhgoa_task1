@@ -45,12 +45,10 @@ def build(card_id, meta, photo):
     json.dump(meta, open(os.path.join(DATA, f"{card_id}.json"), "w"))
 
 
-def clean(value, field, limit, default=None):
+def clean(value, field, limit):
     value = " ".join((value or "").split())
     if not value:
-        if default is None:
-            raise HTTPException(400, f"{field} is required")
-        return default
+        raise HTTPException(400, f"{field} is required")
     if len(value) > limit:
         raise HTTPException(400, f"{field} must be {limit} characters or fewer")
     return value
@@ -58,7 +56,7 @@ def clean(value, field, limit, default=None):
 
 @app.post("/api/generate")
 async def generate(request: Request, photo: UploadFile = File(...), name: str = Form(...),
-                   stack: str = Form(...), team: str = Form("")):
+                   stack: str = Form(...), team: str = Form(...)):
     data = await photo.read()
     if not data:
         raise HTTPException(400, "No photo received")
@@ -72,7 +70,7 @@ async def generate(request: Request, photo: UploadFile = File(...), name: str = 
     meta = {
         "name": clean(name, "Name", 48),
         "stack": clean(stack, "Stack", 64),
-        "team": clean(team, "Team", 22, default="Solo"),
+        "team": clean(team, "Team", 22),
         "title": render.pick_title(),
         "number": random.randint(1, 247),
         "check_in": render.now_check_in(),
