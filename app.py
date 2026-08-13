@@ -2,6 +2,7 @@ import html
 import json
 import os
 import random
+import shutil
 import uuid
 from urllib.parse import quote
 
@@ -15,6 +16,14 @@ import render
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
 os.makedirs(DATA, exist_ok=True)
+
+# Cards committed to the repo. Render's free tier has ephemeral disk, so anything in data/ is lost
+# the first time the service sleeps — seeding from here keeps already-shared /c/ links alive.
+PINNED = os.path.join(HERE, "assets/pinned")
+for _f in os.listdir(PINNED) if os.path.isdir(PINNED) else []:
+    if not os.path.exists(os.path.join(DATA, _f)):
+        shutil.copyfile(os.path.join(PINNED, _f), os.path.join(DATA, _f))
+
 MAX_UPLOAD = 10 * 1024 * 1024
 # Absolute and hardcoded on purpose: X fetches the og:image over the public internet, and behind
 # Render's proxy request.base_url reports the internal http:// host. Override for another deploy.
