@@ -6,84 +6,138 @@
 <title>Builder ID — Hacker House Goa 2026</title>
 <meta name="description" content="Make your Hacker House Goa 2026 builder ID card. #FrameInGoa">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@500;700&family=Noto+Sans+Devanagari:wght@600&display=swap" rel="stylesheet">
 <style>
 :root{--green:#0E7A4E;--yellow:#FFD62B;--pink:#FF4E8A;--coconut:#FFF4DC;--ink:#12100E}
 *{box-sizing:border-box}
-body{margin:0;background:var(--green);color:var(--coconut);
-  font:500 16px/1.5 "JetBrains Mono",ui-monospace,monospace}
-.wrap{max-width:760px;margin:0 auto;padding:24px 20px 64px}
-header{border-bottom:3px solid var(--yellow);padding-bottom:16px;margin-bottom:28px}
-.kicker{color:var(--yellow);letter-spacing:.26em;font-size:13px;font-weight:700}
-h1{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;letter-spacing:-.04em;
-  color:var(--coconut);font-size:clamp(38px,11vw,72px);line-height:.92;margin:10px 0 0}
-.sub{margin:12px 0 0;font-size:13px;letter-spacing:.1em;opacity:.8}
-.sub b{color:var(--pink);font-weight:700}
-label{display:block;font-size:12px;font-weight:700;letter-spacing:.2em;margin:24px 0 8px;
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--green);color:var(--coconut);overflow-x:hidden;
+  font:500 16px/1.55 "JetBrains Mono",ui-monospace,monospace}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+
+/* --- ticker band, straight off the card --- */
+.ticker{position:relative;z-index:2;background:var(--ink);overflow:hidden;padding:11px 0;
+  white-space:nowrap}
+.ticker span{display:inline-block;color:var(--yellow);font-weight:700;font-size:13px;
+  letter-spacing:.22em;animation:slide 30s linear infinite}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* --- woven bands from the badge artwork --- */
+.frond{height:30px;background:
+  repeating-linear-gradient(72deg,var(--green) 0 7px,transparent 7px 24px),
+  repeating-linear-gradient(108deg,var(--green) 0 7px,transparent 7px 24px),var(--yellow)}
+.kunbi{height:18px;background:
+  repeating-linear-gradient(90deg,rgba(18,16,14,.6) 0 3px,transparent 3px 20px),
+  repeating-linear-gradient(0deg,rgba(18,16,14,.6) 0 3px,transparent 3px 20px),var(--pink)}
+
+/* --- hero --- */
+.hero{position:relative;padding:56px 0 44px}
+.blob{position:absolute;z-index:0;filter:blur(.4px);opacity:.85;pointer-events:none}
+.blob.a{width:290px;height:290px;background:var(--pink);right:-70px;top:16px;
+  border-radius:60% 40% 55% 45%/52% 48% 58% 42%;animation:float 13s ease-in-out infinite}
+.blob.b{width:190px;height:190px;background:var(--yellow);right:110px;top:-30px;
+  border-radius:44% 56% 38% 62%/58% 42% 60% 40%;animation:float 17s ease-in-out infinite reverse}
+@keyframes float{50%{transform:translate3d(-16px,18px,0) rotate(8deg)}}
+/* on a phone there is no free space beside the headline — pull the blobs into the corner */
+@media(max-width:700px){
+  .blob{opacity:.55}
+  .blob.a{width:170px;height:170px;right:-55px;top:-45px}
+  .blob.b{width:110px;height:110px;right:95px;top:-70px}
+}
+.hero>*:not(.blob){position:relative;z-index:1}
+.kicker{color:var(--yellow);letter-spacing:.28em;font-size:12px;font-weight:700}
+h1{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;letter-spacing:-.045em;
+  color:var(--coconut);font-size:clamp(52px,15vw,116px);line-height:.86;margin:14px 0 0}
+h1 em{font-style:normal;color:var(--yellow)}
+.signal{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(20px,5vw,30px);
+  color:var(--pink);letter-spacing:-.02em;margin:18px 0 0}
+.lede{margin:14px 0 0;max-width:46ch;font-size:14px;opacity:.85}
+.chip{display:inline-block;margin-top:22px;background:var(--pink);color:var(--coconut);
+  padding:8px 14px;font-size:12px;font-weight:700;letter-spacing:.2em}
+
+/* --- stats --- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(255,244,220,.22);
+  border:2px solid rgba(255,244,220,.22);margin:38px 0 0}
+.stats div{background:var(--green);padding:16px 10px;text-align:center}
+.stats b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:26px;
+  color:var(--yellow);letter-spacing:-.02em}
+.stats small{font-size:10px;letter-spacing:.18em;opacity:.75}
+
+/* --- form panel --- */
+.panel{background:var(--ink);padding:30px 22px 34px;margin:0 0 20px;
+  box-shadow:10px 10px 0 rgba(18,16,14,.35)}
+.panel h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:26px;
+  letter-spacing:-.02em;margin:0 0 4px;color:var(--coconut)}
+.panel .lede{margin-bottom:8px}
+label{display:block;font-size:12px;font-weight:700;letter-spacing:.2em;margin:26px 0 9px;
   color:var(--yellow)}
-input[type=text]{width:100%;padding:13px 14px;border:3px solid var(--ink);border-radius:0;
-  background:var(--coconut);font:500 16px "JetBrains Mono",monospace;color:var(--ink)}
+label i{font-style:normal;color:var(--pink);margin-right:8px}
+input[type=text]{width:100%;padding:14px;border:3px solid var(--ink);background:var(--coconut);
+  font:500 16px "JetBrains Mono",monospace;color:var(--ink)}
+input[type=text]::placeholder{color:rgba(18,16,14,.4)}
 input[type=text]:focus{outline:3px solid var(--pink);outline-offset:2px}
 .stack{display:grid;gap:10px}
 @media(min-width:560px){.stack{grid-template-columns:repeat(3,1fr)}}
-.hint{font-size:11px;opacity:.6;margin-top:8px;letter-spacing:.04em}
-.drop{border:3px dashed var(--coconut);background:rgba(255,244,220,.08);padding:26px 16px;
-  text-align:center;cursor:pointer;display:block}
+.hint{font-size:11px;opacity:.55;margin-top:9px;letter-spacing:.04em}
+.drop{border:3px dashed rgba(255,244,220,.5);background:rgba(255,244,220,.06);padding:30px 16px;
+  text-align:center;cursor:pointer;display:block;transition:background .15s}
+.drop:hover{background:rgba(255,244,220,.12)}
 .drop:focus-within{outline:3px solid var(--pink);outline-offset:2px}
-.drop input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
-.drop img{max-height:150px;border-radius:8px;margin-bottom:10px;display:block;margin-inline:auto}
-button,.btn{display:inline-block;border:3px solid var(--ink);border-radius:0;padding:14px 20px;
+.drop input{position:absolute;width:1px;height:1px;opacity:0}
+/* :not([hidden]) — a bare display:block would beat the hidden attribute and show a broken image */
+.drop img:not([hidden]){max-height:150px;margin:0 auto 12px;display:block;border:3px solid var(--yellow)}
+
+button,.btn{display:inline-block;border:3px solid var(--ink);padding:15px 20px;
   font:700 14px "JetBrains Mono",monospace;letter-spacing:.14em;cursor:pointer;text-decoration:none;
-  color:var(--ink);background:var(--coconut)}
-button:disabled{opacity:.5;cursor:progress}
-#go{width:100%;margin-top:30px;background:var(--pink);color:var(--coconut)}
-#card{width:100%;margin-top:8px;border:3px solid var(--ink);display:block}
-.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  color:var(--ink);background:var(--coconut);transition:transform .12s,box-shadow .12s}
+button:hover,.btn:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+button:disabled{opacity:.5;cursor:progress;transform:none;box-shadow:none}
+#go{width:100%;margin-top:30px;background:var(--pink);color:var(--coconut);border-color:var(--yellow)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .actions .btn,.actions button{flex:1 1 160px;text-align:center}
 #dl{background:var(--yellow)}
-#x{background:var(--ink);color:var(--coconut);border-color:var(--coconut)}
-#result{display:none;margin-top:36px;border-top:3px solid var(--yellow);padding-top:24px}
-#err{display:none;background:var(--pink);color:var(--coconut);padding:12px 14px;margin-top:18px;
+#x{background:var(--coconut)}
+#card{width:100%;display:block;border:3px solid var(--yellow)}
+#result{display:none;margin-bottom:34px}
+#err{display:none;background:var(--pink);color:var(--coconut);padding:13px 15px;margin-top:18px;
   font-size:13px}
-.title-out{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:22px;
-  color:var(--yellow);letter-spacing:-.02em;margin:0 0 10px}
-footer{margin-top:44px;font-size:11px;letter-spacing:.18em;opacity:.5;text-align:center}
+.title-out{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:23px;
+  color:var(--yellow);letter-spacing:-.02em;margin:0 0 12px}
+
+footer{text-align:center;padding:34px 20px 46px}
+/* Devanagari face is explicit — Bricolage has no देवनागरी glyphs and falls back to tofu */
+footer .goa{font-family:"Noto Sans Devanagari",system-ui,sans-serif;font-weight:600;font-size:44px;
+  color:var(--yellow);line-height:1.4}
+footer p{font-size:11px;letter-spacing:.2em;opacity:.6;margin:10px 0 0}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
+
+<div class="ticker"><span id="tick"></span></div>
+
 <div class="wrap">
-  <header>
-    <div class="kicker">HACKER HOUSE GOA · 28–31 OCT 2026</div>
-    <h1>Builder ID</h1>
-    <p class="sub">UPLOAD A PHOTO. GET YOUR BADGE. POST IT. <b>#FRAMEINGOA</b></p>
-  </header>
+  <section class="hero">
+    <div class="blob a"></div><div class="blob b"></div>
+    <div class="kicker">GOA, INDIA · 28–31 OCT 2026</div>
+    <h1>BUILDER<br><em>ID</em></h1>
+    <p class="signal">Less noise. More signal.</p>
+    <p class="lede">Upload a photo, take your badge, post it. Four days, one rhythm — this is the
+      part you do before you get there.</p>
+    <div class="chip">TRACK · AI × CRYPTO</div>
 
-  <form id="f">
-    <label for="photo">YOUR PHOTO</label>
-    <label class="drop" id="drop">
-      <img id="preview" alt="" hidden>
-      <span id="droptext">Tap to choose a photo — JPG, PNG or HEIC</span>
-      <input id="photo" name="photo" type="file" accept="image/*,.heic,.heif" required>
-    </label>
-
-    <label for="name">NAME</label>
-    <input id="name" name="name" type="text" maxlength="48" placeholder="Anaya Sharma" required>
-
-    <label for="stack1">STACK / ROLE</label>
-    <div class="stack">
-      <input id="stack1" type="text" maxlength="18" placeholder="Rust" aria-label="Stack item 1" required>
-      <input id="stack2" type="text" maxlength="18" placeholder="ZK" aria-label="Stack item 2" required>
-      <input id="stack3" type="text" maxlength="18" placeholder="Inference" aria-label="Stack item 3" required>
+    <div class="stats">
+      <div><b>247</b><small>BUILDERS</small></div>
+      <div><b>4</b><small>DAYS</small></div>
+      <div><b>1</b><small>TRACK</small></div>
+      <div><b>∞</b><small>SUSEGAD</small></div>
     </div>
+  </section>
+</div>
 
-    <label for="team">TEAM</label>
-    <input id="team" name="team" type="text" maxlength="22" placeholder="Ghumot" required>
+<div class="kunbi"></div>
 
-    <button id="go" type="submit">GENERATE MY ID →</button>
-  </form>
-
-  <div id="err"></div>
-
+<div class="wrap" style="padding-top:40px">
   <section id="result">
     <p class="title-out" id="titleOut"></p>
     <img id="card" alt="Your Hacker House Goa 2026 builder ID card">
@@ -92,15 +146,52 @@ footer{margin-top:44px;font-size:11px;letter-spacing:.18em;opacity:.5;text-align
       <button type="button" id="rr">REROLL TITLE</button>
       <a class="btn" id="x" target="_blank" rel="noopener">SHARE ON X</a>
     </div>
-    <div class="hint">Download the image and attach it to your post — it looks best in the timeline.</div>
+    <p class="hint">Download the image and attach it to your post — it lands better in the timeline
+      than a link preview.</p>
   </section>
 
-  <footer>SUSEGAD · SHIP ANYWAY</footer>
+  <form class="panel" id="f">
+    <h2>Make your badge</h2>
+    <p class="lede">Three fields and a photo. Takes about a second.</p>
+
+    <label for="photo"><i>01</i>YOUR PHOTO</label>
+    <label class="drop" id="drop">
+      <img id="preview" alt="" hidden>
+      <span id="droptext">Tap to choose a photo — JPG, PNG or HEIC</span>
+      <input id="photo" name="photo" type="file" accept="image/*,.heic,.heif" required>
+    </label>
+    <p class="hint">Any shape. It gets cropped square for you.</p>
+
+    <label for="name"><i>02</i>NAME</label>
+    <input id="name" name="name" type="text" maxlength="48" placeholder="Anaya Sharma" required>
+
+    <label for="stack1"><i>03</i>STACK / ROLE</label>
+    <div class="stack">
+      <input id="stack1" type="text" maxlength="18" placeholder="Rust" aria-label="Stack item 1" required>
+      <input id="stack2" type="text" maxlength="18" placeholder="ZK" aria-label="Stack item 2" required>
+      <input id="stack3" type="text" maxlength="18" placeholder="Inference" aria-label="Stack item 3" required>
+    </div>
+
+    <label for="team"><i>04</i>TEAM</label>
+    <input id="team" name="team" type="text" maxlength="22" placeholder="Ghumot" required>
+
+    <button id="go" type="submit">GENERATE MY ID →</button>
+    <div id="err"></div>
+  </form>
 </div>
+
+<div class="frond"></div>
+
+<footer>
+  <div class="goa">गोवा</div>
+  <p>SUSEGAD · SHIP ANYWAY · #FRAMEINGOA</p>
+</footer>
 
 <script>
 const $ = id => document.getElementById(id);
 let current = null;
+
+$('tick').innerHTML = ('4 DAYS · ONE RHYTHM · EVERYTHING INTENTIONAL · ').repeat(12);
 
 $('photo').onchange = e => {
   const file = e.target.files[0];

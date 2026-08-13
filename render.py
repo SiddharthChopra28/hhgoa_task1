@@ -84,6 +84,16 @@ def baseline_of(y, size):
     return y + size * 0.8
 
 
+def band_baseline(text, f, band_y, band_h):
+    """Baseline that centres `text` in a coloured band by its real ink extents.
+
+    The spec's y + 0.8 * size rule is a rough approximation and leaves everything sitting a few px
+    high inside its bar — most visibly the mixed-case hashtag in the footer.
+    """
+    _, top, _, bottom = f.getbbox(text, anchor="ls")
+    return band_y + band_h / 2 - (top + bottom) / 2 / S
+
+
 def fit(text, path, weight, size, em_ls, max_w, min_size):
     """Step the font size down until the tracked text fits `max_w` artboard px."""
     while size > min_size:
@@ -163,12 +173,16 @@ def render(photo, name, stack, team, title, number=None, check_in=None):
     for i, line in enumerate(lines):
         tracked(d, 576, baseline_of(250 + i * size * 0.9, size), line, f, -0.05 * size, GREEN)
 
-    # --- builder title: the pink block is baked at 348 wide, so redraw it whenever it must grow ---
+    # --- builder title ---
+    # The pink block is baked into the static layer at 348 wide. Paint the ground colour back over
+    # that footprint first, then draw the block at the width this title actually needs — so a short
+    # title gets a tight block instead of pink trailing off to the right of the text.
     title = title.upper()
     f, size = fit(title, BRICOLAGE, 700, 32, -0.01, 660, 22)
-    block_w = max(348, measure(title, f, -0.01 * size) / S + 40)
+    block_w = measure(title, f, -0.01 * size) / S + 40
+    d.rectangle([576 * S, 464 * S, (576 + 348) * S, (464 + 60) * S], fill=YELLOW)
     d.rectangle([576 * S, 464 * S, (576 + block_w) * S, (464 + 60) * S], fill=PINK)
-    tracked(d, 596, baseline_of(474, 32), title, f, -0.01 * size, COCONUT)
+    tracked(d, 596, band_baseline(title, f, 464, 60), title, f, -0.01 * size, COCONUT)
 
     # --- builder number, bottom of the green identity panel ---
     f = font(JBMONO, 22, 700)
@@ -189,12 +203,16 @@ def render(photo, name, stack, team, title, number=None, check_in=None):
         # baseline stays at the 30px position so all three columns sit on one line after shrinking
         tracked(d, x, baseline_of(772, 30), value, vf, -0.02 * vsize, GREEN)
 
-    # --- beach tile bar, footer, hashtag ---
-    tracked(d, 1449, baseline_of(497, 15), "SUSEGAD MODE", font(JBMONO, 15, 700), 3, COCONUT, "center")
-    tracked(d, 597, baseline_of(901, 19), "SUSEGAD · SHIP ANYWAY", font(JBMONO, 19, 700), 3.8, INK)
+    # --- beach tile bar, footer, hashtag: all centred in their band, not on the spec's baseline ---
+    tile_f = font(JBMONO, 15, 700)
+    tracked(d, 1449, band_baseline("SUSEGAD MODE", tile_f, 489, 36), "SUSEGAD MODE", tile_f, 3,
+            COCONUT, "center")
+    foot_f = font(JBMONO, 19, 700)
+    tracked(d, 597, band_baseline("SUSEGAD · SHIP ANYWAY", foot_f, 885, 57), "SUSEGAD · SHIP ANYWAY",
+            foot_f, 3.8, INK)
     # spec says this dot is baked into the static layer; it isn't (no pink pixels in the footer band)
     d.ellipse([(1359 - 6) * S, (914 - 6) * S, (1359 + 6) * S, (914 + 6) * S], fill=PINK)
-    tracked(d, 1543, baseline_of(901, 19), HASHTAG, font(JBMONO, 19, 700), 2.66, INK, "right")
+    tracked(d, 1543, band_baseline(HASHTAG, foot_f, 885, 57), HASHTAG, foot_f, 2.66, INK, "right")
 
     return card.resize((W, H), Image.LANCZOS)
 
