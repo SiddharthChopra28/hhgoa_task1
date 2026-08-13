@@ -1,6 +1,8 @@
 # HH Goa 2026 — Builder ID Card Generator
 
-Upload a photo, fill three fields, get a branded 1620×1020 Builder ID card to download and post
+**Live: https://hhgoa-task1.onrender.com**
+
+Upload a photo, fill four fields, get a branded 1620×1020 Builder ID card to download and post
 on X with **#FrameInGoa**. Track is AI × Crypto for everyone.
 
 ## Run
@@ -11,10 +13,10 @@ python -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/uvicorn app:app --port 8000    # http://localhost:8000
 ```
 
-Docker: `docker build -t hhgoa . && docker run -p 8000:8000 -e PUBLIC_BASE_URL=https://your.host hhgoa`
+Docker: `docker build -t hhgoa . && docker run -p 8000:8000 hhgoa`
 
-`PUBLIC_BASE_URL` must be set in production — the `og:image` URL has to be absolute for X to render
-the link preview.
+Share links and `og:image` URLs are absolute and default to the Render host above, because X fetches
+the preview image over the public internet. Set `PUBLIC_BASE_URL` to point them somewhere else.
 
 ## How it works
 

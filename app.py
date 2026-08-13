@@ -5,7 +5,7 @@ import random
 import uuid
 from urllib.parse import quote
 
-from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from PIL import Image
@@ -16,19 +16,17 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
 os.makedirs(DATA, exist_ok=True)
 MAX_UPLOAD = 10 * 1024 * 1024
+# Absolute and hardcoded on purpose: X fetches the og:image over the public internet, and behind
+# Render's proxy request.base_url reports the internal http:// host. Override for another deploy.
+BASE_URL = os.environ.get("PUBLIC_BASE_URL", "https://hhgoa-task1.onrender.com").rstrip("/")
 
 app = FastAPI(title="HH Goa 2026 Builder ID")
 
 
-def base_url(request: Request):
-    return os.environ.get("PUBLIC_BASE_URL", str(request.base_url)).rstrip("/")
-
-
-def payload(card_id, meta, request):
-    base = base_url(request)
+def payload(card_id, meta):
     caption = (f"{meta['name']} · {render.TRACK} · {meta['title']}\n"
                f"My Hacker House Goa 2026 builder ID 🌴\n\n{render.HASHTAG}")
-    share = f"{base}/c/{card_id}"
+    share = f"{BASE_URL}/c/{card_id}"
     return {
         "id": card_id,
         "title": meta["title"],
@@ -55,7 +53,7 @@ def clean(value, field, limit):
 
 
 @app.post("/api/generate")
-async def generate(request: Request, photo: UploadFile = File(...), name: str = Form(...),
+async def generate(photo: UploadFile = File(...), name: str = Form(...),
                    stack: str = Form(...), team: str = Form(...)):
     data = await photo.read()
     if not data:
@@ -78,11 +76,11 @@ async def generate(request: Request, photo: UploadFile = File(...), name: str = 
     card_id = uuid.uuid4().hex[:12]
     cropped.save(os.path.join(DATA, f"{card_id}.src.jpg"), quality=92)
     build(card_id, meta, cropped)
-    return payload(card_id, meta, request)
+    return payload(card_id, meta)
 
 
 @app.post("/api/reroll/{card_id}")
-def reroll(card_id: str, request: Request):
+def reroll(card_id: str):
     """New title on the cached crop — keeps a phone off the upload path just to change a joke."""
     src = os.path.join(DATA, f"{secure(card_id)}.src.jpg")
     meta_path = os.path.join(DATA, f"{secure(card_id)}.json")
@@ -94,7 +92,7 @@ def reroll(card_id: str, request: Request):
     photo = Image.open(src)
     photo.save(os.path.join(DATA, f"{new_id}.src.jpg"), quality=92)
     build(new_id, meta, photo)
-    return payload(new_id, meta, request)
+    return payload(new_id, meta)
 
 
 def secure(card_id: str):
@@ -113,14 +111,13 @@ def image(card_id: str):
 
 
 @app.get("/c/{card_id}", response_class=HTMLResponse)
-def share_page(card_id: str, request: Request):
+def share_page(card_id: str):
     """Landing page for the shared link — its og:image is what X renders in the post preview."""
     meta_path = os.path.join(DATA, f"{secure(card_id)}.json")
     if not os.path.exists(meta_path):
         raise HTTPException(404, "Not found")
     meta = json.load(open(meta_path))
-    base = base_url(request)
-    img = f"{base}/i/{card_id}.png"
+    img = f"{BASE_URL}/i/{card_id}.png"
     title = html.escape(f"{meta['name']} — {meta['title']} · Hacker House Goa 2026", quote=True)
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -137,7 +134,7 @@ def share_page(card_id: str, request: Request):
 <style>body{{margin:0;background:#12100E;color:#FFF4DC;font:16px/1.5 system-ui,sans-serif;
 text-align:center;padding:24px}}img{{max-width:100%;border-radius:12px}}
 a{{color:#FFD62B;display:inline-block;margin-top:20px}}</style></head>
-<body><img src="{img}" alt="{title}"><br><a href="{base}/">Make your own Builder ID →</a></body></html>"""
+<body><img src="{img}" alt="{title}"><br><a href="{BASE_URL}/">Make your own Builder ID →</a></body></html>"""
 
 
 app.mount("/", StaticFiles(directory=os.path.join(HERE, "static"), html=True), name="static")
